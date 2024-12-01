@@ -3,14 +3,11 @@
   <div class="rightlistBox">
     <section>
       <div class="r1-head">
-        <img
-          :src="
+        <img :src="
             this.$store.state.themeObj.center_smailimg
               ? this.$store.state.themeObj.center_smailimg
               : 'static/img/img01.jpg'
-          "
-          alt=""
-        />
+          " alt="" />
         <h1 v-if="this.$store.state.themeObj.user_start != 0">
           <span>请别再呼唤我为孤独之人</span>
         </h1>
@@ -20,43 +17,20 @@
         <div class="catch-me">
           <div class="">
             <el-tooltip class="item" content="Github" placement="top">
-              <a :href="catchMeObj.git" target="_blank"
-                ><i class="fa fa-fw fa-github"></i
-              ></a>
+              <a :href="catchMeObj.git" target="_blank"><i class="fa fa-fw fa-github"></i></a>
             </el-tooltip>
             <el-tooltip class="item" effect="dark" content="QQ" placement="top">
-              <a :href="catchMeObj.qq" target="_blank"
-                ><i class="fa fa-fw fa-qq"></i
-              ></a>
+              <a :href="catchMeObj.qq" target="_blank"><i class="fa fa-fw fa-qq"></i></a>
             </el-tooltip>
-            <el-tooltip
-              class="item"
-              effect="dark"
-              content="微博"
-              placement="top"
-            >
-              <a :href="catchMeObj.sina" target="_blank"
-                ><i class="fa fa-fw fa-weibo"></i
-              ></a>
+            <el-tooltip class="item" effect="dark" content="微博" placement="top">
+              <a :href="catchMeObj.sina" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
             </el-tooltip>
           </div>
           <div class="">
-            <el-tooltip
-              class="item"
-              effect="dark"
-              content="微信"
-              placement="top"
-            >
-              <a :href="catchMeObj.wechat" target="_blank"
-                ><i class="fa fa-fw fa-wechat"></i
-              ></a>
+            <el-tooltip class="item" effect="dark" content="微信" placement="top">
+              <a :href="catchMeObj.wechat" target="_blank"><i class="fa fa-fw fa-wechat"></i></a>
             </el-tooltip>
-            <el-tooltip
-              class="item"
-              effect="dark"
-              content="CSDN"
-              placement="top"
-            >
+            <el-tooltip class="item" effect="dark" content="CSDN" placement="top">
               <a :href="catchMeObj.csdn" target="_blank"><i class="">C</i></a>
             </el-tooltip>
           </div>
@@ -69,39 +43,26 @@
         <li v-for="(item, index) in browseList" :key="'browseList' + index">
           <a :href="'#/DetailArticle?aid=' + item.id" target="_blank">{{
             item.title
-          }}</a>
+            }}</a>
           —— {{ item.viewCount }} 次围观
         </li>
       </ul>
     </section>
     <!-- 右侧上滑小图片 -->
-    <div
-      v-if="this.$store.state.themeObj.user_start != 0"
-      :class="gotoTop ? 'toTop hidden' : 'toTop goTop hidden'"
-      @click="toTopfun"
-    >
-      <img
-        :src="
+    <div v-if="this.$store.state.themeObj.user_start != 0" :class="gotoTop ? 'toTop hidden' : 'toTop goTop hidden'"
+      @click="toTopfun">
+      <img :src="
           this.$store.state.themeObj.right_img
             ? this.$store.state.themeObj.right_img
             : 'static/img/scroll.png'
-        "
-        alt=""
-      />
+        " alt="" />
     </div>
-    <div
-      v-else
-      :class="gotoTop ? 'toTophui hidden' : 'toTophui goTophui hidden'"
-      @click="toTopfun"
-    >
-      <img
-        :src="
+    <div v-else :class="gotoTop ? 'toTophui hidden' : 'toTophui goTophui hidden'" @click="toTopfun">
+      <img :src="
           this.$store.state.themeObj.right_img
             ? this.$store.state.themeObj.right_img
             : 'static/img/scroll.png'
-        "
-        alt=""
-      />
+        " alt="" />
     </div>
   </div>
 </template>

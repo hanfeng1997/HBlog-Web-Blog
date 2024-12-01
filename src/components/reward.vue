@@ -8,12 +8,7 @@
     </header>
     <section>
       <div>
-        <img
-          src="static/img/coffee.jpg"
-          alt=""
-          style="max-width: 20%"
-          class="coffee"
-        />
+        <img src="static/img/coffee.jpg" alt="" style="max-width: 20%" class="coffee" />
       </div>
       <h1>赞赏说明：</h1>
       <p>
@@ -25,48 +20,30 @@
       <el-row :gutter="30">
         <el-col :span="12" class="donate-item">
           <div class="donate-tip">
-            <img
-              :src="
+            <img :src="
                 rewardData.wechat_image
                   ? rewardData.wechat_image
                   : 'static/img/wx_pay.png'
-              "
-              :onerror="$store.state.errorImg"
-            />
+              " :onerror="$store.state.errorImg" />
             <span>微信扫一扫，请我喝杯咖啡</span>
           </div>
         </el-col>
         <el-col :span="12" class="donate-item">
           <div class="donate-tip">
-            <img
-              :src="
+            <img :src="
                 rewardData.alipay_image
                   ? rewardData.alipay_image
                   : 'static/img/ali_pay.jpg'
-              "
-              :onerror="$store.state.errorImg"
-            />
+              " :onerror="$store.state.errorImg" />
             <span style="padding-top: 14px">支付宝扫一扫，请我喝杯咖啡</span>
           </div>
         </el-col>
       </el-row>
       <h1>@赞赏记录：</h1>
       <el-table :data="tableData" border style="width: 100%">
-        <el-table-column
-          prop="payTime"
-          label="日期"
-          align="center"
-        ></el-table-column>
-        <el-table-column
-          prop="name"
-          label="赞赏人"
-          align="center"
-        ></el-table-column>
-        <el-table-column
-          prop="money"
-          label="金额"
-          align="center"
-        ></el-table-column>
+        <el-table-column prop="payTime" label="日期" align="center"></el-table-column>
+        <el-table-column prop="name" label="赞赏人" align="center"></el-table-column>
+        <el-table-column prop="money" label="金额" align="center"></el-table-column>
       </el-table>
     </section>
   </div>

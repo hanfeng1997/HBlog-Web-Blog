@@ -15,7 +15,6 @@
         </div>
     </div>
 </template>
-
 <script>
 import header from '../components/header.vue'
 import friends from '../components/friends.vue'

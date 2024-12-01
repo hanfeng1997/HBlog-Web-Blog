@@ -1,46 +1,48 @@
 <!-- 文章详情模块 -->
 <template>
-        <div class="detailBox tcommonBox" >
-            <span class="s-round-date">
-                <span class="month" v-html="showInitDate(detailObj.createTime,'month')+'月'"></span>
-                <span class="day" v-html="showInitDate(detailObj.createTime,'date')"></span>
-            </span>
-            <header>
-                <h1>
-                    <a :href="'#/DetailShare?aid='+detailObj.id" target="_blank">
-                        {{detailObj.title}}
-                    </a>
-                </h1>
-                <h2>
-                    <i class="fa fa-fw fa-user"></i>发表于 <span >{{detailObj.createTime}}</span> •
-                    <i class="fa fa-fw fa-eye"></i>{{detailObj.viewCount}} 次围观 •
-                </h2>
-                <div class="ui label">
-                    <a :href="'#/Share?classId='+detailObj.categoryId">{{detailObj.categoryName}}</a>
-                </div>
-            </header>
-            <div class="article-content markdown-body" v-html="detailObj.content"></div>
+  <div class="detailBox tcommonBox">
+    <span class="s-round-date">
+      <span class="month" v-html="showInitDate(detailObj.createTime,'month')+'月'"></span>
+      <span class="day" v-html="showInitDate(detailObj.createTime,'date')"></span>
+    </span>
+    <header>
+      <h1>
+        <a :href="'#/DetailShare?aid='+detailObj.id" target="_blank">
+          {{detailObj.title}}
+        </a>
+      </h1>
+      <h2>
+        <i class="fa fa-fw fa-user"></i>发表于 <span>{{detailObj.createTime}}</span> •
+        <i class="fa fa-fw fa-eye"></i>{{detailObj.viewCount}} 次围观 •
+      </h2>
+      <div class="ui label">
+        <a :href="'#/Share?classId='+detailObj.categoryId">{{detailObj.categoryName}}</a>
+      </div>
+    </header>
+    <div class="article-content markdown-body" v-html="detailObj.content"></div>
 
-            <div class="donate">
-                <div class="donate-word">
-                    <span @click="pdonate=!pdonate">赞赏</span>
-                </div>
-                <el-row :class="pdonate?'donate-body':'donate-body donate-body-show'" :gutter="30">
-                    <el-col  :span="12"   class="donate-item">
-                        <div class="donate-tip">
-                            <img :src="detailObj.wechat_image?detailObj.wechat_image: 'static/img/wx_pay.png'" :onerror="$store.state.errorImg"/>
-                            <span>微信扫一扫，向我赞赏</span>
-                        </div>
-                    </el-col>
-                    <el-col :span="12"  class="donate-item">
-                        <div class="donate-tip">
-                            <img :src="detailObj.alipay_image?detailObj.alipay_image:'static/img/ali_pay.jpg'" :onerror="$store.state.errorImg"/>
-                            <span>支付宝扫一扫，向我赞赏</span>
-                        </div>
-                    </el-col>
-                </el-row>
-            </div>
-        </div>
+    <div class="donate">
+      <div class="donate-word">
+        <span @click="pdonate=!pdonate">赞赏</span>
+      </div>
+      <el-row :class="pdonate?'donate-body':'donate-body donate-body-show'" :gutter="30">
+        <el-col :span="12" class="donate-item">
+          <div class="donate-tip">
+            <img :src="detailObj.wechat_image?detailObj.wechat_image: 'static/img/wx_pay.png'"
+              :onerror="$store.state.errorImg" />
+            <span>微信扫一扫，向我赞赏</span>
+          </div>
+        </el-col>
+        <el-col :span="12" class="donate-item">
+          <div class="donate-tip">
+            <img :src="detailObj.alipay_image?detailObj.alipay_image:'static/img/ali_pay.jpg'"
+              :onerror="$store.state.errorImg" />
+            <span>支付宝扫一扫，向我赞赏</span>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+  </div>
 </template>
 
 <script>

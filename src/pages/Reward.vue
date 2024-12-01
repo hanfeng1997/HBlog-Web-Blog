@@ -14,7 +14,6 @@
 	</div>
 </div>
 </template>
-
 <script>
 import header from '../components/header.vue'
 import rightlist from '../components/rightlist.vue'

@@ -1,91 +1,88 @@
 <!-- 用户中心 -->
 <template>
-    <div>
-        <wbc-nav></wbc-nav>
-        <div class="container">
-            <div v-show="isEdit" class="tcommonBox">
-                <header>
-                    <h1>
-                            编辑个人资料
-                    </h1>
-                </header>
-                <section>
-                    <ul class="userInfoBox">
-                        <li class="avatarlist">
-                            <span class="leftTitle">头像</span>
-                            <el-upload
-                              class="avatar-uploader"
-                              name="img"
-                              :action="uploadURL"
-                              :show-file-list="false"
-                              :on-success="handleAvatarSuccess"
-                              :before-upload="beforeAvatarUpload">
-                              <img   v-if="userInfoObj.avatar" :src="userInfoObj.avatar?userInfoObj.avatar:'static/img/tou.jpg'"  :onerror="$store.state.errorImg" class="avatar">
-                              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                              <div slot="tip" class="el-upload__tip">点击上传头像，只能上传jpg/png文件，且不超过1mb</div>
-                            </el-upload>
-                        </li>
-                        <li class="username">
-                            <span class="leftTitle">昵称</span>
-                            <el-input v-model="userInfoObj.nickName" placeholder="昵称"></el-input> <i  class="fa fa-wa fa-asterisk"></i>
-                        </li>
-                        <li>
-                            <span class="leftTitle">电子邮件</span>
-                            <span>{{userInfoObj.email}}</span>
-                        </li>
-                        <li>
-                            <span class="leftTitle">性别</span>
-                            <template>
-                              <el-radio class="radio" v-model="userInfoObj.sex" label="0">男</el-radio>
-                              <el-radio class="radio" v-model="userInfoObj.sex" label="1">女</el-radio>
-                            </template>
-                        </li>
+	<div>
+		<wbc-nav></wbc-nav>
+		<div class="container">
+			<div v-show="isEdit" class="tcommonBox">
+				<header>
+					<h1>
+						编辑个人资料
+					</h1>
+				</header>
+				<section>
+					<ul class="userInfoBox">
+						<li class="avatarlist">
+							<span class="leftTitle">头像</span>
+							<el-upload class="avatar-uploader" name="img" :action="uploadURL" :show-file-list="false"
+								:on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+								<img v-if="userInfoObj.avatar" :src="userInfoObj.avatar?userInfoObj.avatar:'static/img/tou.jpg'"
+									:onerror="$store.state.errorImg" class="avatar">
+								<i v-else class="el-icon-plus avatar-uploader-icon"></i>
+								<div slot="tip" class="el-upload__tip">点击上传头像，只能上传jpg/png文件，且不超过1mb</div>
+							</el-upload>
+						</li>
+						<li class="username">
+							<span class="leftTitle">昵称</span>
+							<el-input v-model="userInfoObj.nickName" placeholder="昵称"></el-input> <i class="fa fa-wa fa-asterisk"></i>
+						</li>
+						<li>
+							<span class="leftTitle">电子邮件</span>
+							<span>{{userInfoObj.email}}</span>
+						</li>
+						<li>
+							<span class="leftTitle">性别</span>
+							<template>
+								<el-radio class="radio" v-model="userInfoObj.sex" label="0">男</el-radio>
+								<el-radio class="radio" v-model="userInfoObj.sex" label="1">女</el-radio>
+							</template>
+						</li>
 
 
-                    </ul>
-                    <div class=" saveInfobtn">
-                        <a class="tcolors-bg"  href="javascript:void(0);" @click="isEdit=!isEdit">返 回</a>
-                        <a class="tcolors-bg" href="javascript:void(0);" @click="saveInfoFun">保 存</a>
-                    </div>
-                </section>
-            </div>
-            <div v-show="!isEdit" class="tcommonBox">
-                <header>
-                    <h1>
-                            个人中心
-                        <span class="gotoEdit" @click="isEdit=!isEdit"><i class="fa fa-wa fa-edit"></i>编辑</span>
-                    </h1>
+					</ul>
+					<div class=" saveInfobtn">
+						<a class="tcolors-bg" href="javascript:void(0);" @click="isEdit=!isEdit">返 回</a>
+						<a class="tcolors-bg" href="javascript:void(0);" @click="saveInfoFun">保 存</a>
+					</div>
+				</section>
+			</div>
+			<div v-show="!isEdit" class="tcommonBox">
+				<header>
+					<h1>
+						个人中心
+						<span class="gotoEdit" @click="isEdit=!isEdit"><i class="fa fa-wa fa-edit"></i>编辑</span>
+					</h1>
 
-                </header>
-                <section>
-                    <ul class="userInfoBox">
-                        <li class="avatarlist">
-                            <span class="leftTitle">头像</span>
-                            <div class="avatar-uploader">
-                                <img  :src="userInfoObj.avatar?userInfoObj.avatar:'static/img/tou.jpg'"   :onerror="$store.state.errorImg" class="avatar">
-                            </div>
-                        </li>
-                        <li class="username">
-                            <span class="leftTitle">昵称</span>
-                            <span>{{userInfoObj.nickName?userInfoObj.nickName:"无"}}</span>
+				</header>
+				<section>
+					<ul class="userInfoBox">
+						<li class="avatarlist">
+							<span class="leftTitle">头像</span>
+							<div class="avatar-uploader">
+								<img :src="userInfoObj.avatar?userInfoObj.avatar:'static/img/tou.jpg'" :onerror="$store.state.errorImg"
+									class="avatar">
+							</div>
+						</li>
+						<li class="username">
+							<span class="leftTitle">昵称</span>
+							<span>{{userInfoObj.nickName?userInfoObj.nickName:"无"}}</span>
 
-                        </li>
-                        <li>
-                            <span class="leftTitle">电子邮件</span>
-                            <span>{{userInfoObj.email?userInfoObj.email:"无"}}</span>
-                        </li>
-                        <li>
-                            <span class="leftTitle">性别</span>
-                            <span>{{userInfoObj.sex==0?'男':'女'}}</span>
-                        </li>
+						</li>
+						<li>
+							<span class="leftTitle">电子邮件</span>
+							<span>{{userInfoObj.email?userInfoObj.email:"无"}}</span>
+						</li>
+						<li>
+							<span class="leftTitle">性别</span>
+							<span>{{userInfoObj.sex==0?'男':'女'}}</span>
+						</li>
 
-                     
-                    </ul>
 
-                </section>
-            </div>
-        </div>
-    </div>
+					</ul>
+
+				</section>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>

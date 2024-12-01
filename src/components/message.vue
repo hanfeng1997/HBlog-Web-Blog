@@ -1,93 +1,90 @@
 <!-- 留言评论模块 -->
 <template>
-    <div class="tmsgBox"  ref="tmsgBox">
-        <div class="tmsg-respond"  ref="respondBox">
-            <h3>发表评论 <small v-show="isRespond" class="tcolorm" @click="removeRespond">取消回复</small></h3>
-            <form class=""  >
-                <el-input
-                  type="textarea"
-                  :rows="2"
-                  placeholder="说点什么呢``"
-                  v-model="textarea">
-                </el-input>
-                <div :class="pBody?'OwO':'OwO OwO-open'">
-                    <div class="OwO-logo" @click="pBody=!pBody">
-                        <span>OwO表情</span>
-                    </div>
-                    <div class="OwO-body">
-                        <ul class="OwO-items OwO-items-show">
-                            <li class="OwO-item" v-for="(oitem,index) in OwOlist" :key="'oitem'+index" @click="choseEmoji(oitem.title)">
-                                <img :src="'static/img/emot/image/'+oitem.url" alt="">
-                            </li>
-                        </ul>
-                        <div class="OwO-bar">
-                            <ul class="OwO-packages">
-                                <li class="OwO-package-active">Emoji</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <el-row class="tmsg-r-info">
-                    <el-col :span="24" class="info-submit">
-                        <p class="tcolors-bg" @click="sendMsg">{{sendTip}}</p>
-                    </el-col>
-                </el-row>
-            </form>
-        </div>
-        <div class="tmsg-comments"  ref="listDom">
-            <a href="#" class="tmsg-comments-tip">活捉 {{commentList?commentList.length:0}} 条</a>
-            <div class="tmsg-commentshow">
-                <ul class="tmsg-commentlist">
-                    <li class="tmsg-c-item" v-for="(item,index) in commentList" :key="'common'+index">
-                        <article class="">
-                            <header>
-                                <img  :src="$store.state.errorImg"  :onerror="$store.state.errorImg">
-                                <div class="i-name">
-                                    {{item.username}}
-                                </div>
-                                <!-- <div class="i-class">
+	<div class="tmsgBox" ref="tmsgBox">
+		<div class="tmsg-respond" ref="respondBox">
+			<h3>发表评论 <small v-show="isRespond" class="tcolorm" @click="removeRespond">取消回复</small></h3>
+			<form class="">
+				<el-input type="textarea" :rows="2" placeholder="说点什么呢``" v-model="textarea">
+				</el-input>
+				<div :class="pBody?'OwO':'OwO OwO-open'">
+					<div class="OwO-logo" @click="pBody=!pBody">
+						<span>OwO表情</span>
+					</div>
+					<div class="OwO-body">
+						<ul class="OwO-items OwO-items-show">
+							<li class="OwO-item" v-for="(oitem,index) in OwOlist" :key="'oitem'+index"
+								@click="choseEmoji(oitem.title)">
+								<img :src="'static/img/emot/image/'+oitem.url" alt="">
+							</li>
+						</ul>
+						<div class="OwO-bar">
+							<ul class="OwO-packages">
+								<li class="OwO-package-active">Emoji</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<el-row class="tmsg-r-info">
+					<el-col :span="24" class="info-submit">
+						<p class="tcolors-bg" @click="sendMsg">{{sendTip}}</p>
+					</el-col>
+				</el-row>
+			</form>
+		</div>
+		<div class="tmsg-comments" ref="listDom">
+			<a href="#" class="tmsg-comments-tip">活捉 {{commentList?commentList.length:0}} 条</a>
+			<div class="tmsg-commentshow">
+				<ul class="tmsg-commentlist">
+					<li class="tmsg-c-item" v-for="(item,index) in commentList" :key="'common'+index">
+						<article class="">
+							<header>
+								<img :src="$store.state.errorImg" :onerror="$store.state.errorImg">
+								<div class="i-name">
+									{{item.username}}
+								</div>
+								<!-- <div class="i-class">
                                     {{item.label}}
                                 </div> -->
-                                <div class="i-time">
-                                    <time>{{item.createTime}}</time>
-                                </div>
-                            </header>
-                            <section>
-                                <p v-html="analyzeEmoji(item.content)">{{analyzeEmoji(item.content)}}</p>
-                                <div v-if="haslogin" class="tmsg-replay" @click="respondMsg(item.id,item.id,item.createBy)">
-                                    回复
-                                </div>
-                            </section>
-                        </article>
-                        <ul v-show="item.children" class="tmsg-commentlist" style="padding-left:60px;">
-                            <li class="tmsg-c-item" v-for="(citem,cindex) in item.children" :key="'citem'+cindex">
-                                <article class="">
-                                    <header>
-                                            <img :src="$store.state.errorImg"  :onerror="$store.state.errorImg">
-                                            <div class="i-name">
-                                                {{citem.username}} <span>回复</span> {{citem.toCommentUserName}}
-                                            </div>
-                                            <div class="i-time">
-                                                <time>{{citem.createTime}}</time>
-                                            </div>
-                                    </header>
-                                    <section>
-                                        <p v-html="analyzeEmoji(citem.content)">{{citem.content}}</p>
-                                        <div v-show="haslogin" class="tmsg-replay" @click="respondMsg(item.id,citem.id,citem.createBy)">
-                                            回复
-                                        </div>
-                                    </section>
-                                </article>
-                            </li>
-                        </ul>
-                    </li>
+								<div class="i-time">
+									<time>{{item.createTime}}</time>
+								</div>
+							</header>
+							<section>
+								<p v-html="analyzeEmoji(item.content)">{{analyzeEmoji(item.content)}}</p>
+								<div v-if="haslogin" class="tmsg-replay" @click="respondMsg(item.id,item.id,item.createBy)">
+									回复
+								</div>
+							</section>
+						</article>
+						<ul v-show="item.children" class="tmsg-commentlist" style="padding-left:60px;">
+							<li class="tmsg-c-item" v-for="(citem,cindex) in item.children" :key="'citem'+cindex">
+								<article class="">
+									<header>
+										<img :src="$store.state.errorImg" :onerror="$store.state.errorImg">
+										<div class="i-name">
+											{{citem.username}} <span>回复</span> {{citem.toCommentUserName}}
+										</div>
+										<div class="i-time">
+											<time>{{citem.createTime}}</time>
+										</div>
+									</header>
+									<section>
+										<p v-html="analyzeEmoji(citem.content)">{{citem.content}}</p>
+										<div v-show="haslogin" class="tmsg-replay" @click="respondMsg(item.id,citem.id,citem.createBy)">
+											回复
+										</div>
+									</section>
+								</article>
+							</li>
+						</ul>
+					</li>
 
-                </ul>
-                <h1 v-show='hasMore' class="tcolors-bg" @click="addMoreFun" >查看更多</h1>
-                <h1 v-show='!hasMore' class="tcolors-bg" >没有更多</h1>
-            </div>
-        </div>
-    </div>
+				</ul>
+				<h1 v-show='hasMore' class="tcolors-bg" @click="addMoreFun">查看更多</h1>
+				<h1 v-show='!hasMore' class="tcolors-bg">没有更多</h1>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
