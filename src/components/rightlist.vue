@@ -3,10 +3,9 @@
   <div class="rightlistBox">
     <section>
       <div class="r1-head">
-        <img :src="
-            this.$store.state.themeObj.center_smailimg
-              ? this.$store.state.themeObj.center_smailimg
-              : 'static/img/img01.jpg'
+        <img :src="this.$store.state.themeObj.center_smailimg
+          ? this.$store.state.themeObj.center_smailimg
+          : 'static/img/img01.jpg'
           " alt="" />
         <h1 v-if="this.$store.state.themeObj.user_start != 0">
           <span>请别再呼唤我为孤独之人</span>
@@ -43,7 +42,7 @@
         <li v-for="(item, index) in browseList" :key="'browseList' + index">
           <a :href="'#/DetailArticle?aid=' + item.id" target="_blank">{{
             item.title
-            }}</a>
+          }}</a>
           —— {{ item.viewCount }} 次围观
         </li>
       </ul>
@@ -51,17 +50,15 @@
     <!-- 右侧上滑小图片 -->
     <div v-if="this.$store.state.themeObj.user_start != 0" :class="gotoTop ? 'toTop hidden' : 'toTop goTop hidden'"
       @click="toTopfun">
-      <img :src="
-          this.$store.state.themeObj.right_img
-            ? this.$store.state.themeObj.right_img
-            : 'static/img/scroll.png'
+      <img :src="this.$store.state.themeObj.right_img
+        ? this.$store.state.themeObj.right_img
+        : 'static/img/scroll.png'
         " alt="" />
     </div>
     <div v-else :class="gotoTop ? 'toTophui hidden' : 'toTophui goTophui hidden'" @click="toTopfun">
-      <img :src="
-          this.$store.state.themeObj.right_img
-            ? this.$store.state.themeObj.right_img
-            : 'static/img/scroll.png'
+      <img :src="this.$store.state.themeObj.right_img
+        ? this.$store.state.themeObj.right_img
+        : 'static/img/scroll.png'
         " alt="" />
     </div>
   </div>
@@ -152,6 +149,7 @@ export default {
 .rightlistBox {
   position: relative;
 }
+
 .rightlistBox section {
   transition: all 0.2s linear;
   position: relative;
@@ -160,10 +158,12 @@ export default {
   margin-bottom: 20px;
   border-radius: 5px;
 }
+
 .rightlistBox section:hover {
   transform: translate(0, -2px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
+
 .rightlistBox .r1-head {
   text-align: center;
   border-radius: 4px 4px 0 0;
@@ -171,10 +171,12 @@ export default {
   position: relative;
   /*box-shadow: inset 0 -70px 100px -50px rgba(0,0,0,.5);*/
 }
+
 .rightlistBox .r1-head img {
   width: 100%;
   min-height: 100px;
 }
+
 .rightlistBox .r1-head h1 {
   position: absolute;
   bottom: 5px;
@@ -187,28 +189,34 @@ export default {
   width: 130px;
   left: 50%;
 }
+
 .rightlistBox .r1-head h1 span {
   opacity: 0.3;
 }
+
 .rightlistBox .r1-body p {
   font-size: 14px;
   margin: 5px 0 8px 0;
   font-weight: 700;
   text-align: center;
 }
+
 .rightlistBox .r1-body .catch-me {
   text-align: center;
 }
+
 .rightlistBox .r1-body .catch-me a {
   display: inline-block;
   margin-bottom: 7px;
   position: relative;
   text-decoration: none;
 }
+
 .rightlistBox .r1-body .catch-me a:hover i {
   color: #fff;
   background: #f4692c;
 }
+
 .rightlistBox .r1-body .catch-me a i {
   display: inline-block;
   font-size: 18px;
@@ -228,11 +236,13 @@ export default {
   /*padding:10px 0 4px 0;*/
   min-height: 100px;
 }
+
 .rightlistBox .rs2.fixed {
   position: fixed;
   top: 40px;
   width: 22%;
 }
+
 .rightlistBox .rs2 p {
   color: #df2050;
   cursor: pointer;
@@ -245,6 +255,7 @@ export default {
   margin-top: 10px;
   font-weight: 500;
 }
+
 .rightlistBox .rs2 div {
   color: #df2050;
   cursor: pointer;
@@ -257,6 +268,7 @@ export default {
   left: 0;
   top: 30px;
 }
+
 .rightlistBox .rs2 div i.heart {
   display: inline-block;
   text-align: center;
@@ -273,23 +285,28 @@ export default {
   transition-duration: 0s;
   vertical-align: middle;
 }
+
 .rightlistBox .rs2 div i.heart:hover {
   transform: scale(1.15);
   -webkit-transform: scale(1.15);
 }
+
 .rightlistBox .rs2 div i.heart.active {
   -webkit-transition-duration: 1s;
   transition-duration: 1s;
   background-position: -2800px 0;
 }
+
 .rightlistBox .rs2 div span {
   margin-left: -30px;
 }
+
 /**********排队来说*************/
 .rightlistBox .rs3 .rs3-item {
   font-size: 13px;
   line-height: 20px;
 }
+
 .rightlistBox .rs3 .rs3-item a {
   display: block;
   padding: 5px;
@@ -297,40 +314,50 @@ export default {
   border-bottom: 1px solid #ddd;
   margin: 5px 0;
 }
+
 .rightlistBox .rs3 .rs3-item a:hover {
   background: rgba(230, 244, 250, 0.5);
   border-radius: 5px;
 }
+
 .rightlistBox .rs3 .rs3-photo {
   float: left;
 }
+
 .rightlistBox .rs3 .rs3-photo img {
   border-radius: 50%;
   width: 32px;
   height: 32px;
   object-fit: cover;
 }
+
 .rightlistBox .rs3 .rs3-inner {
   margin-left: 40px;
 }
+
 .rightlistBox .rs3 .rs3-inner .rs3-author {
   font-weight: 700;
 }
+
 .rightlistBox .rs3 .rs3-inner .rs3-text {
   font-size: 12px;
   text-align: justify;
 }
+
 .rightlistBox .rs3 .rs3-item:last-child a {
   border-bottom: none;
 }
+
 /************排队看这些***************/
 .rightlistBox .rs4 li {
   padding: 8px 0;
   text-align: justify;
 }
+
 .rightlistBox .rs4 li a {
   font-weight: 600;
 }
+
 .rightlistBox .rs4 li a:hover {
   color: #64609e;
 }
@@ -347,14 +374,17 @@ export default {
   transition: all 0.5s 0.3s ease-in-out;
   cursor: pointer;
 }
+
 .goTop {
   top: -950px;
 }
+
 .toTop img,
 .toTophui img {
   width: 100%;
   height: auto;
 }
+
 .toTophui {
   position: fixed;
   right: 10px;
@@ -366,20 +396,24 @@ export default {
   cursor: pointer;
   animation: toflow 2s ease-in-out infinite;
 }
+
 @keyframes toflow {
   0% {
     /*top:400px;*/
     transform: scale(0.95) translate(0, 10px);
   }
+
   50% {
     /*top:410px;*/
     transform: scale(1) translate(0, 0px);
   }
+
   100% {
     /*top:400px;*/
     transform: scale(0.95) translate(0, 10px);
   }
 }
+
 .goTophui {
   bottom: 120vh;
 }

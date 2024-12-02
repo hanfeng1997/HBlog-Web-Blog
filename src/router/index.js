@@ -67,8 +67,6 @@ export default new Router({
 		},
 		name: 'FriendsLink'
 	}, //友链
-
-
 	{
 		path: '/Login',
 		component: resolve => require(['../pages/Login.vue'], resolve),
@@ -85,6 +83,5 @@ export default new Router({
 		},
 		name: 'UserInfo'
 	}, //用户个人中心
-
 	]
 })
